@@ -1,0 +1,693 @@
+:root {
+  --primary-color: var(--theme-primary, #95ec69);
+  --primary-hover: var(--theme-hover, #86d35f);
+  --text-color: var(--theme-text, #333);
+  --bg-color: var(--theme-bg, #f5f5f5);
+  --card-bg: var(--theme-card, #fff);
+  --border-color: var(--theme-border, #e6e6e6);
+}
+
+[data-theme='light'] {
+  --theme-primary: #95ec69;
+  --theme-hover: #86d35f;
+  --theme-text: #333;
+  --theme-bg: #f5f5f5;
+  --theme-card: #fff;
+  --theme-border: #e6e6e6;
+}
+
+[data-theme='dark'] {
+  --theme-primary: #666666;
+  --theme-hover: #555555;
+  --theme-text: #fff;
+  --theme-bg: #1a1a1a;
+  --theme-card: #2d2d2d;
+  --theme-border: #404040;
+}
+
+[data-theme='pink'] {
+  --theme-primary: #ffb6c1;
+  --theme-hover: #ff9aa7;
+  --theme-text: #333;
+  --theme-bg: #fff5f6;
+  --theme-card: #fff;
+  --theme-border: #ffd6dc;
+}
+
+[data-theme='blue'] {
+  --theme-primary: #87ceeb;
+  --theme-hover: #75bcd6;
+  --theme-text: #333;
+  --theme-bg: #f0f8ff;
+  --theme-card: #fff;
+  --theme-border: #b8e2f2;
+}
+
+/* 小猫动画样式 */
+.cat-animation {
+  position: fixed;
+  z-index: 1000;
+  transition: transform 2s ease;
+  cursor: pointer;
+}
+
+/* 小猫头部 */
+.cat-head {
+  width: 100px;
+  height: 90px;
+  background: white;
+  border-radius: 50%;
+  position: relative;
+  border: 3px solid #333;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 小猫耳朵 */
+.cat-ears {
+  position: relative;
+}
+
+.ear {
+  width: 35px;
+  height: 35px;
+  background: #aaa;
+  position: absolute;
+  top: -15px;
+  border-radius: 15px 15px 0 0;
+  border: 3px solid #333;
+}
+
+.ear.left { 
+  left: 10px; 
+  transform: rotate(-15deg);
+}
+
+.ear.right { 
+  right: 10px; 
+  transform: rotate(15deg);
+}
+
+/* 耳朵内部 */
+.ear::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 15px;
+  height: 15px;
+  background: #ffb6c1;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+/* 小猫脸 */
+.cat-face {
+  position: relative;
+  top: 25px;
+}
+
+/* 眼睛 */
+.eyes {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 12px;
+}
+
+.eye {
+  width: 32px;
+  height: 32px;
+  background: #333;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 眼睛高光 */
+.eye::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+}
+
+/* 腮红 */
+.cheeks {
+  position: absolute;
+  top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 8px;
+}
+
+.cheek {
+  width: 25px;
+  height: 12px;
+  background: #ffb6c1;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+/* 鼻子 */
+.nose {
+  width: 10px;
+  height: 10px;
+  background: #333;
+  border-radius: 50%;
+  margin: 8px auto;
+  position: relative;
+}
+
+/* 嘴巴 */
+.mouth {
+  width: 14px;
+  height: 8px;
+  border: 2px solid #333;
+  border-radius: 0 0 14px 14px;
+  border-top: 0;
+  margin: 4px auto;
+  position: relative;
+}
+
+/* 项圈 */
+.collar {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 12px;
+  background: #ff6b6b;
+  border-radius: 6px;
+  border: 3px solid #333;
+}
+
+/* 铃铛 */
+.bell {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  background: #ffd700;
+  border-radius: 50%;
+  border: 2px solid #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 铃铛内部 */
+.bell::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 4px;
+  background: #333;
+  border-radius: 50%;
+}
+
+/* 耳朵动画 */
+@keyframes earWiggle {
+  0%, 100% { transform: rotate(-15deg); }
+  50% { transform: rotate(-25deg); }
+}
+
+@keyframes earWiggleRight {
+  0%, 100% { transform: rotate(15deg); }
+  50% { transform: rotate(25deg); }
+}
+
+.ear.left {
+  animation: earWiggle 2s infinite;
+}
+
+.ear.right {
+  animation: earWiggleRight 2s infinite;
+}
+
+/* 眼睛动画 */
+/* @keyframes blink {
+  0%, 90%, 100% { height: 32px; }
+  95% { height: 3px; }
+}
+
+.eye {
+  animation: blink 4s infinite;
+}
+
+.eye.right {
+  animation-delay: 0.2s;
+} */
+
+/* 互动效果 */
+.cat-animation:hover .ear.left {
+  animation-duration: 0.5s;
+}
+
+.cat-animation:hover .ear.right {
+  animation-duration: 0.5s;
+}
+
+.cat-animation:hover .eye {
+  animation: none;
+  height: 32px;
+}
+
+/* 社交媒体链接样式 */
+.social-links {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1000;
+}
+
+.social-link-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.delete-link {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(255, 0, 0, 0.8);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.social-link-wrapper:hover .delete-link {
+  opacity: 1;
+}
+
+.add-link-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: var(--card-bg);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.add-link-btn:hover {
+  transform: scale(1.1);
+}
+
+.add-link-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.add-link-modal .modal-content {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+/* 动画效果 */
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.social-link {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.social-link:hover {
+  animation: bounce 0.5s ease-in-out;
+}
+
+/* 响应式布局 */
+@media (max-width: 768px) {
+  .social-links {
+    right: 10px;
+  }
+
+  .social-link {
+    width: 32px;
+  }
+
+  .social-link:hover {
+    width: 100px;
+  }
+}
+
+/* 悬浮动画 */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.social-link {
+  animation: float 3s ease-in-out infinite;
+}
+
+.social-link:hover {
+  animation-play-state: paused;
+}
+
+/* 主题相关样式 */
+[data-theme='dark'] .social-link {
+  background: var(--card-bg);
+  color: var(--text-color);
+}
+
+[data-theme='dark'] .social-link:hover {
+  color: white;
+}
+
+/* 拖拽相关样式 */
+.custom-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.social-link-wrapper {
+  cursor: grab;
+}
+
+.social-link-wrapper:active {
+  cursor: grabbing;
+}
+
+.social-link-wrapper.dragging {
+  opacity: 0.5;
+  background: var(--card-bg);
+  border-radius: 20px;
+}
+
+/* 动画优化 */
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  background: var(--card-bg);
+  border-radius: 20px;
+  text-decoration: none;
+  color: var(--text-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  width: 40px;
+  overflow: hidden;
+}
+
+.social-link:hover {
+  width: 120px;
+  background: var(--link-color);
+  color: white;
+  transform: translateX(-10px);
+}
+
+.social-icon {
+  font-size: 20px;
+  min-width: 24px;
+  text-align: center;
+}
+
+.social-name {
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.social-link:hover .social-name {
+  opacity: 1;
+}
+
+/* 用户统计样式 */
+.user-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--bg-color);
+  border-radius: 8px;
+}
+
+.stats-item {
+  text-align: center;
+  padding: 1rem;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.stats-label {
+  font-size: 14px;
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+
+.stats-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.user-level {
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 等级进度条 */
+.level-progress {
+  margin-top: 0.5rem;
+  height: 4px;
+  background: var(--border-color);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.level-progress-bar {
+  height: 100%;
+  background: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+/* 动画效果 */
+.stats-value {
+  animation: countUp 1s ease-out;
+}
+
+@keyframes countUp {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* 等级图标 */
+.user-level::before {
+  content: '👑';
+  margin-right: 0.5rem;
+  font-size: 1.2em;
+}
+
+/* 积分通知样式 */
+.points-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: slideInRight 0.3s ease-out, fadeOut 0.3s ease-in 2.7s forwards;
+  z-index: 2000;
+}
+
+.points-icon {
+  font-size: 24px;
+  animation: spin 2s linear infinite;
+}
+
+.points-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.points-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.points-reason {
+  font-size: 12px;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 等级进度条样式优化 */
+.level-progress {
+  margin: 0.5rem 0;
+  height: 6px;
+  background: var(--border-color);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.level-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0.1), 
+    rgba(255,255,255,0.2), 
+    rgba(255,255,255,0.1)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.level-info {
+  font-size: 12px;
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-top: 0.2rem;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* 通知容器样式 */
+.notifications-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 2000;
+}
+
+/* 等级提升通知样式 */
+.level-up-notification {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: slideInRight 0.3s ease-out, fadeOut 0.3s ease-in 2.7s forwards;
+}
+
+.level-up-icon {
+  font-size: 32px;
+  animation: bounce 1s infinite;
+}
+
+.level-up-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.level-up-title {
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.level-up-level {
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+  

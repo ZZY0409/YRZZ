@@ -1,0 +1,177 @@
+.moments-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.moments-list {
+  max-height: 500px;
+  overflow-y: auto;
+  margin: 1rem 0;
+}
+
+.moment-item {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.moment-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.moment-info {
+  flex: 1;
+}
+
+.user-name {
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+
+.post-time {
+  font-size: 12px;
+  color: #666;
+}
+
+.moment-content {
+  margin: 1rem 0;
+  line-height: 1.5;
+}
+
+.moment-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.post-form {
+  margin: 1rem 0;
+}
+
+.post-form textarea {
+  width: 100%;
+  height: 100px;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: none;
+  margin-bottom: 0.5rem;
+}
+
+.image-upload {
+  margin: 1rem 0;
+}
+
+.image-upload input {
+  display: none;
+}
+
+.image-upload label {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #95ec69;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.image-preview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 1rem;
+}
+
+.preview-item {
+  position: relative;
+  aspect-ratio: 1;
+}
+
+.preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.preview-item button {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.moment-images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 1rem;
+}
+
+.moment-images img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.comments-list {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.comment-item {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-time {
+  font-size: 12px;
+  color: #666;
+  margin-top: 0.2rem;
+}
+
+.comment-form {
+  margin-top: 1rem;
+  display: flex;
+  gap: 8px;
+}
+
+.comment-form textarea {
+  flex: 1;
+  height: 32px;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: none;
+}
+
+.liked {
+  background: #95ec69;
+  color: #333;
+} 

@@ -1,0 +1,77 @@
+.rankings-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.rankings-list {
+  max-height: 500px;
+  overflow-y: auto;
+  margin: 1rem 0;
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--card-bg);
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  transition: transform 0.2s;
+}
+
+.ranking-item:hover {
+  transform: translateX(5px);
+}
+
+.ranking-number {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.ranking-item:nth-child(1) .ranking-number {
+  background: gold;
+  color: #333;
+}
+
+.ranking-item:nth-child(2) .ranking-number {
+  background: silver;
+  color: #333;
+}
+
+.ranking-item:nth-child(3) .ranking-number {
+  background: #cd7f32;
+  color: white;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+
+.user-level {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.user-points {
+  font-weight: bold;
+  color: var(--primary-color);
+} 
