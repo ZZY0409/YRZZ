@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
-import { getFirestore, enableIndexedDbPersistence } from 'firebase/firestore';
+import { initializeFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import { browserLocalPersistence, setPersistence } from 'firebase/auth';
 
@@ -19,15 +19,10 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const storage = getStorage(app);
 
-// 初始化 Firestore 并添加错误处理
-const db = getFirestore(app);
-enableIndexedDbPersistence(db).catch((err) => {
-  if (err.code == 'failed-precondition') {
-    // 多个标签页打开的情况
-    console.warn('Persistence failed');
-  } else if (err.code == 'unimplemented') {
-    // 浏览器不支持
-    console.warn('Persistence not available');
+// 初始化 Firestore
+const db = initializeFirestore(app, {
+  cache: {
+    enabled: true
   }
 });
 

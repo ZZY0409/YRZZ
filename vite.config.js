@@ -12,5 +12,11 @@ export default defineConfig({
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json']
+  },
+  define: {
+    __REACT_ROUTER_FUTURE_FLAGS__: {
+      v7_startTransition: true,
+      v7_relativeSplatPath: true
+    }
   }
 }); 
