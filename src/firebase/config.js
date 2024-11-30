@@ -85,6 +85,54 @@ const USER_STATUS = {
   AWAY: 'away'
 };
 
+// 积分规则
+const POINT_RULES = {
+  LOGIN: {
+    DAILY_FIRST: 10,    // 每日首次登录
+    CONTINUOUS: 5,      // 连续登录额外奖励
+    MAX_CONTINUOUS: 7   // 最大连续登录天数
+  },
+  CHAT: {
+    SEND_MESSAGE: 1,    // 发送消息
+    DAILY_MAX: 50      // 每日最大获取积分数
+  },
+  MOMENTS: {
+    POST: 5,           // 发布动态
+    COMMENT: 2,        // 评论
+    LIKE: 1,           // 点赞
+    DAILY_MAX: 100     // 每日最大获取积分数
+  }
+};
+
+// 用户等级定义
+const USER_LEVELS = {
+  NOVICE: {
+    name: '新手',
+    minPoints: 0,
+    color: '#95a5a6'
+  },
+  REGULAR: {
+    name: '常客',
+    minPoints: 100,
+    color: '#3498db'
+  },
+  ACTIVE: {
+    name: '活跃',
+    minPoints: 500,
+    color: '#2ecc71'
+  },
+  EXPERT: {
+    name: '专家',
+    minPoints: 2000,
+    color: '#f1c40f'
+  },
+  MASTER: {
+    name: '大师',
+    minPoints: 10000,
+    color: '#e74c3c'
+  }
+};
+
 // 导出所有内容
 export {
   auth,
@@ -96,5 +144,7 @@ export {
   MESSAGE_FIELDS,
   USER_FIELDS,
   CHAT_TYPES,
-  USER_STATUS
+  USER_STATUS,
+  POINT_RULES,
+  USER_LEVELS
 }; 
