@@ -6,28 +6,31 @@ import Register from './components/Auth/Register.jsx';
 import ChatLayout from './components/Chat/ChatLayout.jsx';
 import PrivateRoute from './components/Auth/PrivateRoute.jsx';
 import NotificationContainer from './components/Common/NotificationContainer';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
   return (
     <Router>
-      <AuthProvider>
+      <ErrorBoundary>
         <ThemeProvider>
-          <NotificationContainer />
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route 
-              path="/chat/*" 
-              element={
-                <PrivateRoute>
-                  <ChatLayout />
-                </PrivateRoute>
-              } 
-            />
-            <Route path="/" element={<Navigate to="/chat" />} />
-          </Routes>
+          <AuthProvider>
+            <NotificationContainer />
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route 
+                path="/chat/*" 
+                element={
+                  <PrivateRoute>
+                    <ChatLayout />
+                  </PrivateRoute>
+                } 
+              />
+              <Route path="/" element={<Navigate to="/chat" />} />
+            </Routes>
+          </AuthProvider>
         </ThemeProvider>
-      </AuthProvider>
+      </ErrorBoundary>
     </Router>
   );
 }

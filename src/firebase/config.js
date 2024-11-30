@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, enableIndexedDbPersistence } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import { browserLocalPersistence, setPersistence } from 'firebase/auth';
 
@@ -17,8 +17,19 @@ const firebaseConfig = {
 // 初始化 Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
 const storage = getStorage(app);
+
+// 初始化 Firestore 并添加错误处理
+const db = getFirestore(app);
+enableIndexedDbPersistence(db).catch((err) => {
+  if (err.code == 'failed-precondition') {
+    // 多个标签页打开的情况
+    console.warn('Persistence failed');
+  } else if (err.code == 'unimplemented') {
+    // 浏览器不支持
+    console.warn('Persistence not available');
+  }
+});
 
 // 配置 Google 登录
 const googleProvider = new GoogleAuthProvider();
@@ -133,6 +144,102 @@ const USER_LEVELS = {
   }
 };
 
+// 主题定义
+const THEMES = {
+  LIGHT: {
+    id: 'light',
+    name: '清新绿',
+    color: '#95ec69',
+    primary: '#95ec69',
+    hover: '#86d35f',
+    text: '#333',
+    bg: '#f5f5f5',
+    card: '#fff',
+    border: '#e6e6e6'
+  },
+  DARK: {
+    id: 'dark',
+    name: '暗夜黑',
+    color: '#666666',
+    primary: '#666666',
+    hover: '#555555',
+    text: '#fff',
+    bg: '#1a1a1a',
+    card: '#2d2d2d',
+    border: '#404040'
+  },
+  PINK: {
+    id: 'pink',
+    name: '粉嫩粉',
+    color: '#ffb6c1',
+    primary: '#ffb6c1',
+    hover: '#ff9aa7',
+    text: '#333',
+    bg: '#fff5f6',
+    card: '#fff',
+    border: '#ffd6dc'
+  },
+  BLUE: {
+    id: 'blue',
+    name: '天空蓝',
+    color: '#87ceeb',
+    primary: '#87ceeb',
+    hover: '#75bcd6',
+    text: '#333',
+    bg: '#f0f8ff',
+    card: '#fff',
+    border: '#b8e2f2'
+  }
+};
+
+const MEMBER_FIELDS = {
+  ROLE: 'role',
+  JOINED_AT: 'joinedAt',
+  NICKNAME: 'nickname'
+};
+
+const MOMENT_FIELDS = {
+  USER_ID: 'userId',
+  CONTENT: 'content',
+  IMAGES: 'images',
+  CREATED_AT: 'createdAt',
+  LIKES: 'likes',
+  COMMENTS: 'comments'
+};
+
+const COMMENT_FIELDS = {
+  USER_ID: 'userId',
+  CONTENT: 'content',
+  CREATED_AT: 'createdAt'
+};
+
+const DEFAULT_LINKS = {
+  BILIBILI: {
+    name: '哔哩哔哩',
+    icon: '📺',
+    url: 'https://www.bilibili.com',
+    color: '#fb7299'
+  },
+  DOUYIN: {
+    name: '抖音',
+    icon: '🎵',
+    url: 'https://www.douyin.com',
+    color: '#000000'
+  },
+  GITHUB: {
+    name: 'GitHub',
+    icon: '🐱',
+    url: 'https://github.com',
+    color: '#333'
+  },
+  GOOGLE: {
+    name: 'Google',
+    icon: '🔍',
+    url: 'https://www.google.com',
+    color: '#4285f4'
+  }
+};
+
 // 导出所有内容
 export {
   auth,
@@ -142,9 +249,14 @@ export {
   COLLECTIONS,
   CHAT_FIELDS,
   MESSAGE_FIELDS,
+  MEMBER_FIELDS,
   USER_FIELDS,
   CHAT_TYPES,
   USER_STATUS,
   POINT_RULES,
-  USER_LEVELS
+  USER_LEVELS,
+  THEMES,
+  MOMENT_FIELDS,
+  COMMENT_FIELDS,
+  DEFAULT_LINKS
 }; 
